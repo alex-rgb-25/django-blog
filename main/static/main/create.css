@@ -1,0 +1,61 @@
+body {
+    overflow-y: hidden ! important;
+    overflow-x: hidden ! important;
+    background-color: #f8f8f8;
+    background-image: url("wall1.jpg");
+    /*background: linear-gradient(rgba(255,255,255), rgba(255,255,255)), url("wall1.jpg");
+    */
+    background-size: 100% 100%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center; 
+}
+
+.post-form{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    border: 3px solid black;
+    border-radius: 10px;
+    background-color: rgb(119, 119, 119, .6);
+    padding: 20px;
+}
+
+.post-form label{
+    display: inline-block;
+    width: 90px;
+    text-align: right;
+    color: rgb(12, 12, 12);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.post-form input {
+    padding-left: 10px;
+    font-size: 17px;
+    letter-spacing: 1px;
+    border-radius: 20px;
+    border: none;
+    margin: 10px;
+    border: 1px solid rgb(233, 233, 233)
+}
+
+.post-form input:focus, textarea:focus {
+    outline: none;
+}
+
+.post-form input[type="submit"] {
+
+    padding-left: 13px;
+    padding-right: 13px;
+    font-weight: 600;
+    background-color: rgb(22, 22, 22);
+    border: 1px solid rgb(0, 0, 0);
+    color: white;
+}
+.post-form input[type="submit"]:hover {
+    color: rgb(196, 196, 196);
+    background-color: black;
+}

@@ -1,0 +1,91 @@
+{% extends 'main/layout.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block body %}
+
+<div class="front-search">
+    <h1><i style="position:relative; top: -2px;font-size:23px;margin-right: -8px;" title="comma separated values" class="fa-regular fa-circle-question ab2"></i> Search by tags </h1>
+
+    <form action="/" method="POST">
+        {% csrf_token %}
+        <div class="input-icons">
+            <i class="fa-solid fa-magnifying-glass ab"></i>
+            {{ form }}
+        
+        <input type="submit" value="Search">
+        
+    </div>
+    </form>
+</div>
+
+    {% if not blogs %}
+    <h3 style="text-align: center">sorry, there are no blogs tagged {{ tags }}</h3>
+    {% else %}
+
+
+
+    {% for blog in blogs %}
+        {% if blog.url != "" %}
+            <div class="row container1" >
+                <div class="col-lg-6 col-sm-12 cont2">
+                    <img src="{{blog.url}}" class="img-responsive" alt="image" width="100%" height="auto">
+                </div>
+
+                <div class="col-lg-6 col-sm-12 cont4">
+                    <div class="cont3">
+                        <h2 id="{{ blog.id }}">{{ blog.title }}</h2>
+                        <p>by {{ blog.user.username }}
+                            <span class="blog-footer-date"> {{ blog.date }} </span>
+                        </p>
+                        <p class="blog-text">{{ blog.text }}</p>
+                    </div>
+
+                    <div class="blog-footer">
+
+                        {% if blog in liked_blogs %}
+                
+                            <a href="{% url 'like' blog.id %}"><i class="fa-solid fa-heart"></i></a>
+                        {% else %}
+                            <a href="{% url 'like' blog.id %}"><i class="fa-regular fa-heart"></i></a>
+                        {% endif %}
+                        Likes: {{ blog.likes }}
+
+                        <a class="cd" href="{% url 'blog' blog.id %}">Read More</a>
+                        
+                    </div>
+                </div>
+            </div>
+<hr>
+        {% else %}
+        <div class="container1 container2" >
+            <div class="cont4">
+                 <div class="cont3">
+                        <h2>{{ blog.title }}</h2>
+                        <p>by {{ blog.user.username }}
+                            <span class="blog-footer-date"> {{ blog.date }} </span>
+                        </p>
+                        <p class="blog-text">{{ blog.text }}</p>
+                    </div>
+
+                    <div class="blog-footer">
+                        {% if blog in liked_blogs %}
+                
+                        <a href="{% url 'like' blog.id %}"><i class="fa-solid fa-heart"></i></a>
+                    {% else %}
+                        <a href="{% url 'like' blog.id %}"><i class="fa-regular fa-heart"></i></a>
+                    {% endif %}
+                        Likes: {{ blog.likes }}
+                        <a class="cd" href="{% url 'blog' blog.id %}">Read More</a>
+                        
+                    </div>
+            </div>
+        </div>
+<hr>
+            {% endif %}
+
+    {% endfor %}
+
+    {% endif %}
+
+{% endblock %}

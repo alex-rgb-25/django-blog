@@ -1,0 +1,36 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %} Login {% endblock %}
+
+{% block head %} 
+<link rel="stylesheet" type="text/css" href="{% static 'main/login.css' %}">
+{% endblock %}
+
+{% block body %}
+
+<form method="post">
+    {% csrf_token %}
+    <div class="login-form-error">
+        {{ form.non_field_errors }}
+    </div>
+    <div class="login-form-container">
+        <i class="fa-solid fa-ghost login-form-icon"></i>
+        <div class="form-group login-form-el">
+
+
+            {{ form.username }}
+            {{ form.username.errors }}
+
+        </div>
+        <div class="form-group login-form-el">
+        
+            {{ form.password }}
+            {{ form.password.errors }}
+        </div>
+        <input type="submit" class="login-form-el login-form-submit" value="Login">
+    </div>
+
+</form>
+
+{% endblock %}

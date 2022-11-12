@@ -1,0 +1,85 @@
+body {
+    overflow-y: hidden ! important;
+    overflow-x: hidden ! important;
+    background-color: #f8f8f8;
+    background-image: url("wall1.jpg");
+    /*background: linear-gradient(rgba(255,255,255), rgba(255,255,255)), url("wall1.jpg");
+    */
+    background-size: 100% 100%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center; 
+   }
+
+
+
+.login-form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    border: 3px solid black;
+    border-radius: 10px;
+    background-color: rgb(119, 119, 119, .6);
+    padding: 20px;
+}
+.login-form-el {
+    margin: 10px;
+}
+
+.login-form-el input{
+    font-size: 17px;
+    text-align: center;
+    letter-spacing: 1px;
+    border-radius: 20px;
+}
+
+.login-form-icon {
+    width: 300px;
+    font-size: 50px;
+    margin: 0 auto;
+    text-align: center;
+    color: black;
+}
+
+.login-form-submit{
+    font-size: 17px;
+    text-align: center;
+    letter-spacing: 1px;
+    width: 93%;
+    border-radius: 20px;
+    height: 40px;
+    border: none;
+    background-color: black;
+    color: white;
+}
+
+.login-form-submit:hover{
+    color: rgb(179, 179, 179);
+}
+
+
+
+.login-form-error {
+    background-color: rgb(255, 145, 145);
+    border-radius: 5px;
+    color: white;
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 40px;
+    font-size: 16px;
+}
+
+.form-register-error {
+    color: black;
+}
+
+
+
+@media screen and (max-width: 500px) {
+    body {
+      background: rgb(50, 54, 50);
+    }
+  }

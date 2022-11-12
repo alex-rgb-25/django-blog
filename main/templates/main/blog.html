@@ -1,0 +1,112 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %} {{blog.title}} {% endblock %}
+
+{% block head %} 
+<link rel="stylesheet" type="text/css" href="{% static 'main/blog.css' %}">
+{% endblock %}
+
+{% block body %}
+
+    <div class="blog-container">
+    <h1 class="blog-title">  {{blog.title}} </h1>
+
+    {% if blog.url != "" %}
+    <div class="blog-img">
+        <img src="{{blog.url}}" class="img-responsive" alt="image" width="75%" height="auto">
+    </div>
+    {% else %}
+        <br>
+    {% endif %}
+
+    <div class="blog-info">
+        <p>by {{ blog.user }} <span class="blog-date">{{ blog.date }}</span>
+
+    </p>
+            {% if okToEdit %}
+    <div class="blog-edit"><a onclick="return confirm('Are you sure you want to delete?');" href="{% url 'delete' blog.id %}">Delete</a>
+        <a href="{% url 'edit' blog.id %}">Edit</a></div>
+    
+   {% endif %}
+
+   <div>
+    </div>        
+</div>
+<div class="blog-info-likes">
+        {% if liked %}
+                
+        <a href="{% url 'like2' blog.id %}"><i class="fa-solid fa-heart"></i></a>
+        {% else %}
+        <a href="{% url 'like2' blog.id %}"><i class="fa-regular fa-heart"></i></a>
+        {% endif %}
+        Likes: {{ blog.likes }}
+    </div>
+
+    <hr style="width: 90%">
+    <div class="blog-text">
+        {{ blog.text }}
+    </div>
+    
+</div>
+
+    {% for tag in blog.tags.all %}
+       <span class="blog-tag">#{{ tag }}</span> 
+    {% endfor %}
+
+
+
+
+<hr style="width: 90%">
+
+
+
+
+
+
+
+{% if user.is_authenticated %}
+    <div class="blog-comments">
+        <div class="comment-form">
+        <form action="" method="POST">
+            {% csrf_token %}
+                {{ form }}
+            
+            <input type="submit" value="Comment">
+        </form>
+    </div>
+
+    {% else %}
+        <h4 style="text-align:center;"> <a style="text-decoration: none;
+        font-size:27px; color: rgb(82, 82, 82)" href="/login">Login </a>to comment</h4>
+    {% endif %}
+
+
+    {% if num > 1 %}
+        <h3> {{ num }} Comments</h3>
+    {% elif num == 1 %}
+    <h3> {{ num }} Comment</h3>
+    {% else %}
+    <h3> No Comments</h3>
+    <br>
+    {% endif %}
+
+
+
+    {% for comment in comments %}
+
+
+
+
+    <div class="blog-comment-p"> 
+        
+         <div class="blog-comment bubble thought">{{ comment.text }} </div>
+    </div>
+    <div class="blog-comment-user">
+        <i class="fa-solid fa-ghost"></i>{{ comment.user.username }}
+    </div>
+    <br><br>
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %} Edit Post {% endblock %}
+{% block head %} 
+<link rel="stylesheet" type="text/css" href="{% static 'main/create.css' %}">
+{% endblock %}
+{% block body %}
+
+
+
+<div class="post-form">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="post-form-cont">
+
+                <label>Title:</label>
+                {{ form.title }}
+                <br>
+                <label>Image url:</label>
+                {{ form.url }}
+                <br>
+                <label>Text:</label>
+                {{ form.text }}
+                <br>
+                <label>Tags:</label>
+               
+                {{ form.tags }}
+                <input type="submit" value="Post">
+
+           
+
+    </div>
+
+    </form>
+</div>
+
+{% endblock %}
